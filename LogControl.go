@@ -21,3 +21,12 @@ func readLog(url string) map[string]string{
 	}
 	return ret
 }
+
+func writeLog(url string, log map[string]string){
+	file, err := os.Open(url)
+	checkError(err)
+	writer := bufio.NewWriter(file)
+	for key, value := range log{
+		writer.WriteString(key + " was shorten to " + value)
+	}
+}
